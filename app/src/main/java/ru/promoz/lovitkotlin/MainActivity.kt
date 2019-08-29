@@ -17,8 +17,9 @@ class MainActivity : AppCompatActivity() {
             val contractNumber = loginContractNumber.text;
             val password = loginPassword.text;
 
-            Retrofit.Builder()
-                .u
+            Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("sad");
+
 
             val toastMesseng = "Ваш номер контракта: $contractNumber \nВаш пароль: $password "
             Toast.makeText(this, toastMesseng,  Toast.LENGTH_LONG).show()
