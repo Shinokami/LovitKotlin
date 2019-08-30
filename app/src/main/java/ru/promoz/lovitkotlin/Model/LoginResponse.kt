@@ -1,3 +1,3 @@
 package ru.promoz.lovitkotlin.Model
 
-data class LoginResponse (val data: PreAuthModel)
+data class LoginResponse (val Data: PreAuthModel)

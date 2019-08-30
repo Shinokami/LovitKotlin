@@ -8,7 +8,7 @@ import ru.promoz.lovitkotlin.Model.LoginResponse
 
 interface PreAuthApi {
 
-    @Headers("Accept: Application/json")
+    @Headers("Accept: application/json")
     @GET("/api/preauth")
     fun authUser (
         @Query("username") loginContractNumber: String,

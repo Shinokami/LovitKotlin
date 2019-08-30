@@ -65,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                        println(t.message)
                     }
                 })
         }
