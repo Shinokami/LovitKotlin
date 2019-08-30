@@ -23,6 +23,10 @@ class LoginActivity : AppCompatActivity() {
         val toolbar  = findViewById<Toolbar>(R.id.toolbar);
         setSupportActionBar(toolbar)
 
+        //Инициализация API
+        val retrofit = RetrofitClient.instance
+        preApi = retrofit.create(PreAuthApi::class.java)
+
         //клик
         buttonSignUp.setOnClickListener {
             val contractNumber = loginContractNumber.text.toString().trim()
@@ -41,11 +45,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
 
-            RetrofitClient.instance.create(PreAuthApi::class.java).authUser(contractNumber, password)
+            preApi.authUser(contractNumber, password)
                 .enqueue(object: Callback<LoginResponse> {
                     override fun onResponse(call: Call<LoginResponse>,response: Response<LoginResponse>) {
                         if (response.isSuccessful){
-                            Toast.makeText(applicationContext, response.body()?.Data!!.Ac.BrandId, Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, "Успешно", Toast.LENGTH_LONG).show()
                         }
                         else{
                             when(response.code()){
@@ -60,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        println(t.message)
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                     }
                 })
         }

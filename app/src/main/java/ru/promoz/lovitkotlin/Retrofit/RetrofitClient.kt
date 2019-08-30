@@ -1,6 +1,6 @@
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private var ourInstance : Retrofit?=null
@@ -10,7 +10,7 @@ object RetrofitClient {
         if (ourInstance == null){
             ourInstance = Retrofit.Builder()
                 .baseUrl("https://mobile-api-test.tut.net")
-                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory .create())
                 .build()
         }
