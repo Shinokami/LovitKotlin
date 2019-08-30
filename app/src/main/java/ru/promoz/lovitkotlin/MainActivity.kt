@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //клик
+        /*//клик
         loginButton.setOnClickListener {
             val contractNumber = loginContractNumber.text;
             val password = loginPassword.text;
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
             val toastMesseng = "Ваш номер контракта: $contractNumber \nВаш пароль: $password "
             Toast.makeText(this, toastMesseng,  Toast.LENGTH_LONG).show()
-        }
+        }*/
 
         /*loginButton.setOnClickListener{
             Toast.makeText(this, "Не то ввел", Toast.LENGTH_LONG).show();

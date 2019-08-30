@@ -1,4 +1,5 @@
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 
 object RetrofitClient {
@@ -10,8 +11,9 @@ object RetrofitClient {
             ourInstance = Retrofit.Builder()
                 .baseUrl("https://mobile-api-test.tut.net")
                 .addConverterFactory(SimpleXmlConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory .create())
                 .build()
         }
+        return ourInstance!!
     }
 }

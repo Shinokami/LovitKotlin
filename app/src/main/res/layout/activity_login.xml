@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignStart="@+id/toolbar"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Вход в личный кабинет"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/loginContractNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:hint="Введите номер договора"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginContractNumber"
+        android:layout_alignStart="@+id/loginContractNumber"
+        android:layout_alignEnd="@+id/loginContractNumber"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="Введите пароль"
+        android:inputType="textPersonName|textWebPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginContractNumber" />
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPassword"
+        android:layout_alignStart="@+id/loginPassword"
+        android:layout_alignEnd="@+id/loginPassword"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/send_button"
+        android:textColor="@color/textColorPrimary"
+        android:text="ВОЙТИ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+
+</RelativeLayout>
