@@ -4,7 +4,8 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
-import ru.promoz.lovitkotlin.Model.LoginResponse
+import ru.promoz.lovitkotlin.Model.PreAuth.PreAuthModel
+import ru.promoz.lovitkotlin.Response.LoginResponse
 
 interface PreAuthApi {
 
