@@ -1,5 +1,5 @@
 package ru.promoz.lovitkotlin.Model.PreAuth
 
-data class PreAuthModel (
+data class Data (
     val ac : Ac
 )

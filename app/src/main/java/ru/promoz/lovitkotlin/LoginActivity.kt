@@ -2,6 +2,7 @@ package ru.promoz.lovitkotlin
 
 import RetrofitClient
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.Toast
@@ -12,12 +13,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.promoz.lovitkotlin.Model.PreAuth.Token
+import ru.promoz.lovitkotlin.Response.ClientInfoResponse
 import ru.promoz.lovitkotlin.Response.LoginResponse
-import ru.promoz.lovitkotlin.Retrofit.PreAuthApi
+import ru.promoz.lovitkotlin.Retrofit.Api
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var preApi: PreAuthApi
+    private lateinit var preApi: Api
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -30,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Инициализация API
         val retrofit = RetrofitClient.instance
-        preApi = retrofit.create(PreAuthApi::class.java)
+        preApi = retrofit.create(Api::class.java)
 
         //клик
         buttonSignUp.setOnClickListener {
@@ -61,12 +64,34 @@ class LoginActivity : AppCompatActivity() {
                             response: Response<LoginResponse>
                         ) {
                             if (response.isSuccessful) {
-                                val rsp :LoginResponse = response.body()
-                                Toast.makeText(
-                                    applicationContext,
-                                    rsp.,
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                preApi.accessToken(contractNumber, password,"password")
+                                    .enqueue(object : Callback<Token>{
+                                        override fun onResponse(
+                                            call: Call<Token>,
+                                            response: Response<Token>
+                                        ) {
+                                            if (response.isSuccessful){
+                                                val auth = response.body()?.tokenType!! + " " + response.body()?.accessToken!!
+                                                val randomIntent = Intent(this@LoginActivity,MainActivity::class.java)
+                                                randomIntent.putExtra("auth", auth.toString())
+                                                startActivity(randomIntent)
+                                            }else{
+                                                Toast.makeText(
+                                                    applicationContext,
+                                                    "Неизвестная ошибка получения токена",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                            }
+                                        }
+
+                                        override fun onFailure(call: Call<Token>, t: Throwable) {
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "Ошибка ответа сервера получения токена",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+                                    })
                             } else {
                                 when (response.code()) {
                                     400 -> Toast.makeText(
